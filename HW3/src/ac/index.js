@@ -23,13 +23,13 @@ export function selectArticle(selected) {
 export function fromDate(date) {
   return {
     type: FROM_RANGE,
-    date: {date}
+    payload: {date}
   }
 }
 
 export function toDate(date) {
   return {
     type: TO_RANGE,
-    date: {date}
+    payload: {date}
   }
 }

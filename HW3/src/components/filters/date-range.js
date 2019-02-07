@@ -22,7 +22,7 @@ class DateRange extends Component {
     return (
       <div className="date-range">
         <DayPicker
-          /* selectedDays={(day) => DateUtils.isDayInRange(day, { from, to })} */
+          selectedDays={(day) => DateUtils.isDayInRange(day, { from, to })}
           onDayClick={this.handleDayClick}
         />
         {selectedRange}
@@ -31,10 +31,7 @@ class DateRange extends Component {
   }
 }
 
-const mapStateToProps = (storeState) => ({ 
-  from: storeState.from,
-  to: storeState.to
- })
+const mapStateToProps = ({from, to}) => ({ from, to })
 
  const mapDispatchToProps = {
   fromDate: fromDate,
