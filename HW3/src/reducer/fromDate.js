@@ -1,4 +1,4 @@
-import { FROM_RANGE } from '../constants'
+import { FROM_RANGE} from '../constants'
 
 export default (date = null, action) => {
   switch (action.type) {

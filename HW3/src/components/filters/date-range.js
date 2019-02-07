@@ -4,14 +4,9 @@ import { connect } from 'react-redux'
 import { fromDate, toDate } from '../../ac/index'
 
 import 'react-day-picker/lib/style.css'
-import { runInThisContext } from 'vm';
+
 
 class DateRange extends Component {
-  /* state = {
-    from: null,
-    to: null
-  } */
-  
 
   handleDayClick = (day) => (!this.props.from ? this.props.fromDate(day) : this.props.toDate(day) ) 
 

@@ -18,8 +18,36 @@ export class ArticleList extends Component {
     return <ul>{this.body}</ul>
   }
 
+  getSelectedArticles(articles, selected) {
+    let arr = [];
+      for(let i = 0; i < articles.length; i++) {
+        for(let j = 0; j < selected.length; j++) {
+          if(articles[i].id === selected[j].value) {
+            arr.push(articles[i]);
+          }
+        }
+      }
+    return arr;
+  }
+
+  getFilteredArticles(articles, from, to) {
+    let arr2 = [];
+      for(let i = 0; i < articles.length; i++) {
+        if(from <= Date.parse(articles[i].date) && Date.parse(articles[i].date) <= to || from >= Date.parse(articles[i].date) && Date.parse(articles[i].date) >= to) {
+          console.log("fjgksd")
+          arr2.push(articles[i])
+        }
+      }
+      return arr2;
+  }
+
   get body() {
-    const { toggleOpenItem, openItemId, articles } = this.props
+    let { toggleOpenItem, openItemId, articles, selected, from, to } = this.props
+    
+    if(selected) { articles = this.getSelectedArticles(articles, selected)}
+
+    if(from && to) {articles = this.getFilteredArticles(articles, from, to)}
+
     return articles.map((article) => (
       <li key={article.id} className="test__article-list--item">
         <Article
@@ -39,6 +67,6 @@ export class ArticleList extends Component {
 
 const ArticleListWithAccordion = accordion(ArticleList)
 
-export default connect((state) => ({
-  articles: state.articles
-}))(ArticleListWithAccordion)
+const mapStateToProps = ({articles, selected, from, to}) => ({articles, selected, from, to})
+
+export default connect(mapStateToProps)(ArticleListWithAccordion)
